@@ -1,0 +1,22 @@
+vlib work
+vlog FIFO.svp TESTBENCH.sv +cover -covercells
+vsim -voptargs=+acc work.top_FIFO -cover
+add wave -position insertpoint  \
+sim:/top_FIFO/TB/error_read \
+sim:/top_FIFO/TB/error_write \
+sim:/top_FIFO/f_if/almostempty \
+sim:/top_FIFO/f_if/almostfull \
+sim:/top_FIFO/f_if/clk \
+sim:/top_FIFO/f_if/data_in \
+sim:/top_FIFO/f_if/data_out \
+sim:/top_FIFO/f_if/data_out_golden \
+sim:/top_FIFO/f_if/empty \
+sim:/top_FIFO/f_if/full \
+sim:/top_FIFO/f_if/overflow \
+sim:/top_FIFO/f_if/rd_en \
+sim:/top_FIFO/f_if/rst_n \
+sim:/top_FIFO/f_if/underflow \
+sim:/top_FIFO/f_if/wr_ack \
+sim:/top_FIFO/f_if/wr_en
+coverage save top_FIFO.ucdb -onexit
+run -all
